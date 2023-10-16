@@ -9,4 +9,5 @@ int _printf(const char *format, ...);
 int _putchar(char c);
 int strLen(char *size);
 int lenStr_Ptr(const char *size);
+int percentage_print(void);
 #endif
