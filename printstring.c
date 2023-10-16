@@ -18,7 +18,7 @@ int string_print(va_list str)
 		length = strlen(s);
 		for (i = 0; i < length; i++)
 		{
-			_putchar([i]);
+			_putchar(s[i]);
 		}
 		return (length);
 	}

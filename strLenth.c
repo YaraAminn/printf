@@ -10,9 +10,8 @@ int strLen(char *size)
 	int i;
 
 	for (i = 0; size[i] != 0; i++)
-	{
-		return(i);
-	}
+		;
+	return (i);
 }
 
 /**
@@ -27,7 +26,6 @@ int lenStr_Ptr(const char *size)
 	int j;
 
 	for (j = 0; size[j] != 0; j++)
-	{
-		return (j);
-	}
+		;
+	return (j);
 }
