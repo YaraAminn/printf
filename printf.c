@@ -38,15 +38,15 @@ int _printf(const char *format, ...)
                         /* to check for the 'c' characyer */
                         else if (*format == 'c')
                         {
-                                char c = va_arg(argums,int);
+                                char c = va_arg(argums, int);
                                 /* where va_arg holds (argums,char) */
-                                write (1,&c,1);
+                                write(1,&c,1);
                                 count++;
                         }
 			else if (*format == 's')
                                 /* check 's' condition */
                         {
-                                char *str_check = va_arg(argums,char*);
+                                char *str_check = va_arg(argums, char*);
                                 int len_str = 0;
 
                                 /* getting the string length */
@@ -61,5 +61,5 @@ int _printf(const char *format, ...)
                 format++;
         }
         va_end(argums);
-        return(count);
+        return (count);
 }
