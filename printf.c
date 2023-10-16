@@ -28,11 +28,11 @@ check_Inside_format:
                         if (func_arr[j].spec[0] == format[indx] && func_arr[j].spec[1] == format[indx+1])
                         {
                                 lenth = lenth + func_arr[j].form(argums);
-                        }
-                        indx = indx + 2;
-                        goto check_Inside_format;
-                }
-                j--;
+				indx = indx + 2;
+				goto check_Inside_format;
+			}
+			j--;
+		}
                 _putchar(format[indx]);
                 lenth++;
                 indx++;
