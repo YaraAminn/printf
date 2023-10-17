@@ -19,7 +19,7 @@ typedef struct format
 {
 	char *spec;
 	int (*form)();
-} convert_match;
+} point;
 int _putchar(char c);
 int _printf(const char *format, ...);
 int strLen(char *size);

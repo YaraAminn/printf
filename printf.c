@@ -6,37 +6,59 @@
  */
 int _printf(const char *format, ...)
 {
-	convert_match func_arr[] = {
-	{"%%",percentage_print}, {"%c", char_print},{"%s", string_print},
-        };
-
+        int count = 0;
         va_list argums;
-        int indx, j, lenth = 0;
-	
-	va_start(argums, format);
-        if (format == NULL || (format[0] == '%' && format[1] == '\0'))
-         /* check if format ptr is null or 1st indx inside format
-          * is % and the 2nd contain nothing */
-		return (-1); /* return error */
-check_Inside_format:
 
-        while (format[indx] != '\0')
+        if (format == NULL)
+                return (-1);
+
+        va_start(argums, format);
+
+         /** inspect the whole strings in format pointer */
+        while (*format)
         {
-	 	j = 3;
-                while (j >= 0)
+                if (*format != '%') /* check if format strings
+                not equal the percent sign */
                 {
-                        if (func_arr[j].spec[0] == format[indx] && func_arr[j].spec[1] == format[indx+1])
+                        write(1,format,1); /* write standard output */
+                        count++;
+                }
+                else
+                {
+                        format++; /* go to check the nxt character */
+                        if (*format == '\0')
+                                break; /** exit */
+                        /** if the cond is 2 percent signs '%%' */
+                        if (*format == '%')
                         {
-                                lenth = lenth + func_arr[j].form(argums);
-				indx = indx + 2;
-				goto check_Inside_format;
-			}
-			j--;
-		}
-                _putchar(format[indx]);
-                lenth++;
-                indx++;
+                                write(1,format,1); /** print double '%%' */
+                                count++;
+                        }
+                        /* to check for the 'c' characyer */
+                        else if (*format == 'c')
+                        {
+                                char c = va_arg(argums, int);
+                                /* where va_arg holds (argums,char) */
+                                write(1,&c,1);
+                                count++;
+                        }
+                        else if (*format == 's')
+                                /* check 's' condition */
+                        {
+                                char *str_check = va_arg(argums, char*);
+                                int len_str = 0;
+
+                                /* getting the string length */
+                                while (str_check[len_str] != '\0')
+                                        len_str++;
+                                /* get the output string */
+                                write(1,str_check,len_str);
+                                count = count + len_str;
+                        }
+
+                }
+                format++;
         }
         va_end(argums);
-        return(lenth);
+        return (count);
 }
