@@ -45,16 +45,65 @@ int _printf(const char *format, ...)
                         else if (*format == 's')
                                 /* check 's' condition */
                         {
-                                char *str_check = va_arg(argums, char*);
-                                int len_str = 0;
+				char *s;
+				int i, length;
+				s = va_arg(argums, char *);
+				if (s == NULL)
+				{
+					s = "(null)";
+				length = strLen(s);
 
-                                /* getting the string length */
-                                while (str_check[len_str] != '\0')
-                                        len_str++;
-                                /* get the output string */
-                                write(1,str_check,len_str);
-                                count = count + len_str;
+				for (i = 0; i < length; i++)
+				{
+					_putchar(s[i]);
+				}
+				}
+				else
+				{
+					length = strLen(s);
+					for (i = 0; i < length; i++)
+					{
+						_putchar(s[i]);
+					}
+				}
                         }
+			else if (*format == 'i')
+			{
+				int num_int = va_arg(argums, int);
+				int num, frac = 1, dig, i = 1;
+				int last_num = num_int % 10;
+
+				num_int = num_int / 10;
+				num = num_int;
+				if (last_num < 0)
+				{
+					_putchar('-');
+					num = -num;
+					num_int = -num_int;
+					last_num = -last_num;
+					i++;
+				}
+				if (num > 0)
+				{
+					while (num / 10 != 0)
+					{
+						frac = frac * 10;
+						num = num / 10;
+					}
+					num = num_int;
+					while (frac > 0)
+					{
+						dig = num / frac;
+						_putchar(dig + '0');
+						num = num - (dig * frac);
+						frac = frac / 10;
+						i++;
+					}
+				}
+				_putchar(last_num + '0');
+				_putchar(i);
+			
+			}
 
                 }
                 format++;
