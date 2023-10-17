@@ -45,27 +45,16 @@ int _printf(const char *format, ...)
                         else if (*format == 's')
                                 /* check 's' condition */
                         {
-				char *s;
-				int i, length;
-				s = va_arg(argums, char *);
-				if (s == NULL)
-				{
-					s = "(null)";
-				length = strLen(s);
+				char *str_check = va_arg(argums, char*);
+                                int len_str = 0;
 
-				for (i = 0; i < length; i++)
-				{
-					_putchar(s[i]);
-				}
-				}
-				else
-				{
-					length = strLen(s);
-					for (i = 0; i < length; i++)
-					{
-						_putchar(s[i]);
-					}
-				}
+                                /* getting the string length */
+                                while (str_check[len_str] != '\0')
+                                        len_str++;
+                                /* get the output string */
+                                write(1,str_check,len_str);
+                                count = count + len_str;
+			
                         }
 			else if (*format == 'i')
 			{
