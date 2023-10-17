@@ -56,7 +56,7 @@ int _printf(const char *format, ...)
                                 count = count + len_str;
 			
                         }
-			else if (*format == 'i')
+			else if (*format == 'd')
 			{
 				int num_int = va_arg(argums, int);
 				int num, frac = 1, dig, i = 1;
