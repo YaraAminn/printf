@@ -57,6 +57,7 @@ int _printf(const char *format, ...)
 			
                         }
 			else if (*format == 'd')
+				/* check 'd' condition */
 			{
 				int num_int = va_arg(argums, int);
 				int num, frac = 1, dig, i = 1;
@@ -64,6 +65,7 @@ int _printf(const char *format, ...)
 
 				num_int = num_int / 10;
 				num = num_int;
+				/* if last number is negative */
 				if (last_num < 0)
 				{
 					_putchar('-');
@@ -72,6 +74,7 @@ int _printf(const char *format, ...)
 					last_num = -last_num;
 					i++;
 				}
+				/* if the number is positive */
 				if (num > 0)
 				{
 					while (num / 10 != 0)
@@ -93,6 +96,7 @@ int _printf(const char *format, ...)
 				_putchar(i);
 			}
 			else if (*format == 'i')
+				/* check the decimal condition */
 			{
 				int num_int = va_arg(argums, int);
                                 int num, frac = 1, dig, i = 1;
