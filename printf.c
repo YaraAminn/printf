@@ -91,7 +91,43 @@ int _printf(const char *format, ...)
 				}
 				_putchar(last_num + '0');
 				_putchar(i);
-			
+			}
+			else if (*format == 'i')
+			{
+				int num_int = va_arg(argums, int);
+                                int num, frac = 1, dig, i = 1;
+                                int last_num = num_int % 10;
+
+                                num_int = num_int / 10;
+                                num = num_int;
+                                if (last_num < 0)
+                                {
+                                        _putchar('-');
+                                        num = -num;
+                                        num_int = -num_int;
+                                        last_num = -last_num;
+                                        i++;
+                                }
+                                if (num > 0)
+                                {
+                                        while (num / 10 != 0)
+                                        {
+                                                frac = frac * 10;
+                                                num = num / 10;
+                                        }
+                                        num = num_int;
+                                        while (frac > 0)
+                                        {
+                                                dig = num / frac;
+                                                _putchar(dig + '0');
+                                                num = num - (dig * frac);
+                                                frac = frac / 10;
+                                                i++;
+                                        }
+                                }
+                                _putchar(last_num + '0');
+                                _putchar(i);
+
 			}
 
                 }
